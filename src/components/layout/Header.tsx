@@ -1,30 +1,18 @@
 import * as React from 'react';
+import { FiCoffee } from 'react-icons/fi';
 
 import UnstyledLink from '@/components/links/UnstyledLink';
-
-const links = [
-  { href: '/', label: 'Route 1' },
-  { href: '/', label: 'Route 2' },
-];
 
 export default function Header() {
   return (
     <header className='sticky top-0 z-50 bg-white'>
-      <div className='layout flex h-14 items-center justify-between'>
-        <UnstyledLink href='/' className='font-bold hover:text-gray-600'>
-          Home
+      <div className='layout flex h-14 items-center justify-center text-xl'>
+        <UnstyledLink
+          href='/'
+          className='flex items-center gap-2 pt-4 text-2xl font-bold  hover:text-gray-600'
+        >
+          NUSFika <FiCoffee />
         </UnstyledLink>
-        <nav>
-          <ul className='flex items-center justify-between space-x-4'>
-            {links.map(({ href, label }) => (
-              <li key={`${href}${label}`}>
-                <UnstyledLink href={href} className='hover:text-gray-600'>
-                  {label}
-                </UnstyledLink>
-              </li>
-            ))}
-          </ul>
-        </nav>
       </div>
     </header>
   );
