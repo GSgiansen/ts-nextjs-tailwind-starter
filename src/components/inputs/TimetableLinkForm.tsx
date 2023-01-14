@@ -4,7 +4,6 @@ import { BsArrowCounterclockwise } from 'react-icons/bs';
 export default function TimetableLinkForm() {
   function formSubmitHandler(event: React.FormEvent) {
     event.preventDefault();
-    console.log(fieldRef.current?.value.split('\n'));
   }
 
   const fieldRef = React.useRef<HTMLTextAreaElement | null>(null);
