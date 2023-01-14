@@ -6,7 +6,10 @@ import ButtonLink from '@/components/links/ButtonLink';
 import UnderlineLink from '@/components/links/UnderlineLink';
 import UnstyledLink from '@/components/links/UnstyledLink';
 import Seo from '@/components/Seo';
-
+import TimingDisplay from '@/components/TimingDisplay';
+import getModuleCodes from '@/pages/api/getModuleCodes';
+import getModuleTimings from '@/pages/api/getModuleTimings';
+import removeAll from '@/pages/api/removeAll';
 /**
  * SVGR Support
  * Caveat: No React Props Type.
@@ -33,6 +36,8 @@ export default function HomePage() {
             <h1 className='mt-4'>
               Next.js + Tailwind CSS + TypeScript Starter
             </h1>
+            <TimingDisplay />
+
             <p className='mt-2 text-sm text-gray-800'>
               A starter for Next.js, Tailwind CSS, and TypeScript with Absolute
               Import, Seo, Link component, pre-configured with Husky{' '}
