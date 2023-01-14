@@ -1,4 +1,4 @@
-import mergeSlots from '@/pages/api/mergeSlots';
+import mergeSlots from '@/constant/mergeSlots';
 
 const dict = {
   Monday: 0,
@@ -12,16 +12,18 @@ const dict = {
 
 // given a start and end time, removes the busy timeslots from the schedule
 function removeBusy(
-  schedule: Array<Array<number>>,
+  schedule: Array<Array<Array<number>>>,
   start: number,
-  end: number
+  end: number,
+  day: number
 ) {
+  console.log(schedule);
   const busySlots: Array<number> = [];
   const updatedSlots: Array<Array<number>> = [];
   for (let i = 0; i < schedule.length; i = i + 1) {
-    if (schedule[i][0] === end) {
+    if (schedule[day][i][0] === end) {
       break;
-    } else if (schedule[i][0] === start) {
+    } else if (schedule[day][i][0] === start) {
       busySlots.push(i);
       start = start + 100;
     } else {
@@ -32,13 +34,14 @@ function removeBusy(
     if (busySlots.includes(i)) {
       continue;
     } else {
-      updatedSlots.push(schedule[i]);
+      updatedSlots.push(schedule[day][i]);
     }
   }
-  return updatedSlots;
+  schedule[day] = updatedSlots;
+  return schedule;
 }
 
-export default async function removeAll(obj) {
+export default async function removeAllArr(obj) {
   //array of objects
   function generateSchedule() {
     const schedule: Array<Array<number>> = [];
@@ -47,7 +50,7 @@ export default async function removeAll(obj) {
     }
     return schedule;
   }
-  const WeeklySchedule = [];
+  var WeeklySchedule = [];
   for (let j = 0; j < 7; j += 1) {
     WeeklySchedule[j] = generateSchedule();
   }
@@ -57,25 +60,14 @@ export default async function removeAll(obj) {
     const start = parseInt(obj[i].startTime);
     const end = parseInt(obj[i].endTime);
     const d = dict[obj[i].day];
-    //console.log(d);
-    WeeklySchedule[d] = removeBusy(WeeklySchedule[d], start, end);
+    console.log(d);
+    WeeklySchedule = removeBusy(WeeklySchedule, start, end, d);
   }
-  // for (let i = 0; i < 5; i += 1) {
-  //   const problem = JSON.parse(JSON.stringify(mergeSlots(WeeklySchedule[i])));
-
-  //   if (problem.toString() == [[0, 2400]].toString()) {
-  //     console.log('nth is input');
-  //   } else {
-  //     WeeklySchedule[i] = mergeSlots(WeeklySchedule[i]);
-  //     console.log(WeeklySchedule);
-  //   }
-  // }
-  const problem = JSON.parse(JSON.stringify(mergeSlots(WeeklySchedule[0])));
-  if (problem.toString() == [[0, 2400]].toString()) {
-    console.log('nth is input');
-  } else {
-    console.log(console.log(mergeSlots(WeeklySchedule[0])));
+  for (let i = 0; i < 5; i += 1) {
+    WeeklySchedule[i] = mergeSlots(WeeklySchedule[i]);
+    console.log(WeeklySchedule);
   }
+  console.log(WeeklySchedule);
 }
 // test = getModuleTimings();
 

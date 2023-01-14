@@ -1,4 +1,4 @@
-import getModuleTimings from '@/pages/api/getModuleTimings';
+import getModuleTimings from '@/constant/getModuleTimings';
 
 //extract an array of module codes from the url given
 export default function getModuleCodes(url) {
@@ -14,7 +14,11 @@ export default function getModuleCodes(url) {
     }
   }
   modules.push(built);
-  const ans = getModuleTimings(modules);
-  console.log(ans);
+  var res = [];
+  for (let i = 0; i < module.length; i += 1) {
+    res.push(getModuleTimings[i]);
+  }
+
+  console.log(res);
   return 'hello';
 }

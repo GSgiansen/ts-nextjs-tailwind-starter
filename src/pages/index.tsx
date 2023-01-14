@@ -7,8 +7,8 @@ import UnderlineLink from '@/components/links/UnderlineLink';
 import UnstyledLink from '@/components/links/UnstyledLink';
 import Seo from '@/components/Seo';
 import TimingDisplay from '@/components/TimingDisplay';
-import getModuleCodes from '@/pages/api/getModuleCodes';
-import getModuleTimings from '@/pages/api/getModuleTimings';
+import getModuleCodes from '@/constant/getModuleCodes';
+import getModuleTimings from '@/constant/getModuleTimings';
 import removeAll from '@/pages/api/removeAll';
 /**
  * SVGR Support
